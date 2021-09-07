@@ -19,12 +19,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create Test Data
-        uses: heyman/docker-run-action@docker-networks
+      - name: Run tfsec
+        uses: addnab/docker-run-action@v3
         with:
           image: tfsec/tfsec
-          run: >
-            tfsec/tfsec .
+          run: tfsec/tfsec .
         
 
       # Runs a set of commands using the runners shell
