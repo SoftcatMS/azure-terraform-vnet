@@ -19,15 +19,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run tfsec
-        uses: addnab/docker-run-action@v3
-        with:
-          image: tfsec/tfsec
-          run: tfsec/tfsec .
+#       - name: Run tfsec
+#         uses: addnab/docker-run-action@v3
+#         with:
+#           image: tfsec/tfsec
+#           run: tfsec/tfsec .
         
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo 'Add other actions to build,'
+          docker run --rm -it -v "$(pwd):/src" tfsec/tfsec /src
           echo 'test, and deploy your project.'
