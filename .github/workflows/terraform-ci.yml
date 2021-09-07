@@ -24,10 +24,12 @@ jobs:
 #         with:
 #           image: tfsec/tfsec
 #           run: tfsec/tfsec .
+
+      - uses: actions/checkout@v2
+      - uses: triat/terraform-security-scan@v3.0.0
         
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          docker run --rm -it -v "$(pwd):/src" tfsec/tfsec /src
           echo 'test, and deploy your project.'
