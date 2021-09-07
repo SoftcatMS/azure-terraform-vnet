@@ -30,9 +30,9 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: | 
+          ls
+          cd tests
+          terraform init
 
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan
 
