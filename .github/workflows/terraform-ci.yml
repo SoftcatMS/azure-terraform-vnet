@@ -43,3 +43,10 @@ jobs:
           export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/basic
           terraform plan
+          
+      - name: Terraform Apply Basic
+        id: plan
+        run: | 
+          echo ARM_CLIENT_ID
+          ls
+
