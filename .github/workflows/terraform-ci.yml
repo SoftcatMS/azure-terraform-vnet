@@ -8,31 +8,22 @@ on:
   pull_request:
     branches: [ '*' ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  tfsec:
+    name: tfsec sarif report
     runs-on: ubuntu-latest
 
     steps:
-#       - name: Run tfsec
-#         uses: addnab/docker-run-action@v3
-#         with:
-#           image: tfsec/tfsec
-#           run: tfsec/tfsec .
+      - name: Clone repo
+        uses: actions/checkout@master
 
       - name: tfsec
-        uses: tfsec/tfsec-sarif-action@v0.0.3
+        uses: tfsec/tfsec-sarif-action@main
         with:
-          working_directory: terraform/relevant
-          github_token: $$
-        
+          sarif_file: tfsec.sarif         
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo 'test, and deploy your project.'
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: tfsec.sarif  
