@@ -45,7 +45,7 @@ jobs:
           terraform plan
           
       - name: Terraform Apply Basic
-        id: plan
+        id: apply
         run: | 
           echo ARM_CLIENT_ID
           ls
