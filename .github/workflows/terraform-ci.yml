@@ -13,7 +13,7 @@ on:
 
 jobs:
   tfsec:
-    name: tfsec sarif report
+    name: Terraform CI
     runs-on: ubuntu-latest
 
     steps:
@@ -38,4 +38,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: softcat.azurecr.io
           image: softcat.azurecr.io/softcat-devops-toolbox:latest
-          run: terraform init
+          run: | 
+            cd tests/basic
+            terraform init
