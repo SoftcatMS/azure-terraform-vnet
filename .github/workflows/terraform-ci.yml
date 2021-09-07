@@ -30,3 +30,10 @@ jobs:
         with:
           # Path to SARIF file relative to the root of the repository
           sarif_file: tfsec.sarif
+
+      - name: Create S3 bucket
+        uses: addnab/docker-run-action@v3
+        with:  
+          registry: softcat.azurecr.io
+          image: softcat-devops-toolbox:latest
+          run: terraform init
