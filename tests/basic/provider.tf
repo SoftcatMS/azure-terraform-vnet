@@ -24,10 +24,10 @@ terraform {
 
   required_providers {
     # Uncomment required providers and delete unneeded
-    # azurerm = {
-    #   source  = "hashicorp/azurerm"
-    #   version = "=2.46.0"
-    # }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=2.46.0"
+    }
 
     # aws = {
     #   version = ">= 3.20"
@@ -48,9 +48,9 @@ terraform {
 # Uncomment required providers and delete unneeded
 
 # Configure the Microsoft Azure Provider
-# provider "azurerm" {
-#   features {} 
-# }
+provider "azurerm" {
+  features {} 
+}
 
 # Configure the AWS Provider
 # provider "aws" {
