@@ -28,11 +28,14 @@ jobs:
         run: terraform fmt -check
         continue-on-error: true
 
-      - name: Terraform Init
+      - name: Terraform Init Basic
         id: init
         run: | 
-          ls
-          cd tests
+          cd tests/basic
           terraform init
 
-
+      - name: Terraform Plan Basic
+        id: plan
+        run: | 
+          cd tests/basic
+          terraform plan
