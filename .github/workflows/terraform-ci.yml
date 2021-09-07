@@ -39,5 +39,6 @@ jobs:
           registry: softcat.azurecr.io
           image: softcat.azurecr.io/softcat-devops-toolbox:latest
           run: | 
+            ls
             cd tests/basic
             terraform init
