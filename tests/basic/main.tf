@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rg-vnet-test-basic" {
-  name     = "rg-test-resources"
+  name     = "rg-test-basic-resources"
   location = "UK South"
 }
 

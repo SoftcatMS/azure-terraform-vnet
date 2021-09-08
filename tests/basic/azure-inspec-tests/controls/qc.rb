@@ -2,7 +2,7 @@
 
 # Test values
 
-resource_group1 = 'rg-test-resources'
+resource_group1 = 'rg-test-basic-resources'
 
 
 describe azure_virtual_network(resource_group: resource_group1, name: 'vnet-test-basic') do
