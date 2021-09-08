@@ -65,7 +65,7 @@ jobs:
           export AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
           export AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           pwd
-          inspec exec inspec/azure-inspec-tests --chef-license accept -t azure://
+          inspec exec tests/basic/azure-inspec-tests --chef-license accept -t azure://
         continue-on-error: true
 
       - name: Terraform Destroy Basic
