@@ -23,6 +23,10 @@ jobs:
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
         
+      - name: Install Inspec 
+        uses: actionshub/chef-install@1.1.0
+
+
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
@@ -47,6 +51,31 @@ jobs:
       - name: Terraform Apply Basic
         id: apply
         run: | 
-          echo $ARM_CLIENT_ID
-          ls
+          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
+          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
+          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
+          cd tests/basic
+          terraform apply --auto-approve
+
+      - name: Inspec Scan Basic
+        run: | 
+          export AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
+          export AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
+          export AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          export AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
+          pwd
+          inspec exec tests/basic/azure-inspec-tests --chef-license accept -t azure://
+        continue-on-error: true
+
+      - name: Terraform Destroy Basic
+        id: destroy
+        run: | 
+          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
+          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
+          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
+          cd tests/basic
+          terraform destroy --auto-approve
+
 
