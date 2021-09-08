@@ -1,13 +1,13 @@
 terraform {
   required_version = ">=1.0.0"
 
-  # #Azurerm Backend https://www.terraform.io/docs/language/settings/backends/azurerm.html#
-  # backend "azurerm" {
-  #   resource_group_name  = "StorageAccount-ResourceGroup"
-  #   storage_account_name = "abcd1234"
-  #   container_name       = "tfstate"
-  #   key                  = "path.to.terraform.tfstate"  
-  # }
+  # Azurerm Backend https://www.terraform.io/docs/language/settings/backends/azurerm.html#
+  backend "azurerm" {
+    resource_group_name  = "tfstate"
+    storage_account_name = "tfstate25210"
+    container_name       = "tf-modules-azure-vnet-advanced"
+    key                  = "terraform.tfstate"
+  }
 
   # #AWS Backend https://www.terraform.io/docs/language/settings/backends/s3.html
   # backend "s3" {
@@ -49,7 +49,7 @@ terraform {
 
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
-  features {} 
+  features {}
 }
 
 # Configure the AWS Provider
