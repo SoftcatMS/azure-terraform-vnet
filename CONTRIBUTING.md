@@ -40,6 +40,17 @@ be accompanied with tests.
 
 Test are located in folder [tests](./tests)
 
+When updating a test you will need to reflect that update and test for its result where possible using Inspec. 
+These tests can be found in:
+
+[basic_tests](./tests/basic/azure-inspec-tests/controls)  
+[advanced_tests](./tests/advanced/azure-inspec-tests/controls)  
+
+Documentation can be found here:
+
+[Inspec_Azure](https://github.com/inspec/inspec-azure)
+[Inspec_Azure](https://github.com/inspec/inspec-azure)
+[Inspec_Azure](https://github.com/inspec/inspec-azure)
 
 ## Linting and Formatting
 
