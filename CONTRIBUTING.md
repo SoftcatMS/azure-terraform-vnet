@@ -49,8 +49,7 @@ These tests can be found in:
 Documentation can be found here:
 
 [Inspec_Azure](https://github.com/inspec/inspec-azure)
-[Inspec_Azure](https://github.com/inspec/inspec-azure)
-[Inspec_Azure](https://github.com/inspec/inspec-azure)
+
 
 ## Linting and Formatting
 
