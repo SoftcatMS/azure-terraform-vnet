@@ -13,6 +13,15 @@ jobs:
   terraform:
     name: Terraform CI
     runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
     steps:
       - name: Clone repo
@@ -33,51 +42,30 @@ jobs:
       - name: Terraform Init Basic
         id: init_basic
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/basic
           terraform init
 
       - name: Terraform Plan Basic
         id: plan_basic
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/basic
           terraform plan
           
       - name: Terraform Apply Basic
         id: apply_basic
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/basic
           terraform apply --auto-approve
 
       - name: Inspec Scan Basic
         id: inspec_basic
         run: | 
-          export AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
-          pwd
           inspec exec tests/basic/azure-inspec-tests --chef-license accept -t azure://
         continue-on-error: false
 
       - name: Terraform Destroy Basic
         id: destroy_basic
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/basic
           terraform destroy --auto-approve
 
@@ -86,50 +74,29 @@ jobs:
       - name: Terraform Init Advanced
         id: init_advanced
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/advanced
           terraform init
 
       - name: Terraform Plan Advanced
         id: plan_advanced
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/advanced
           terraform plan
           
       - name: Terraform Apply Advanced
         id: apply_advanced
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/advanced
           terraform apply --auto-approve
 
       - name: Inspec Scan Advanced
         id: inspec_advanced
         run: | 
-          export AZURE_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export AZURE_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export AZURE_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
-          pwd
           inspec exec tests/advanced/azure-inspec-tests --chef-license accept -t azure://
         continue-on-error: false
 
       - name: Terraform Destroy Advanced
         id: destroy_advanced
         run: | 
-          export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}
-          export ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}
-          export ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          export ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}
           cd tests/advanced
           terraform destroy --auto-approve
