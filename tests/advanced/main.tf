@@ -16,7 +16,7 @@ module "vnet" {
   }
 
   subnet_service_endpoints = {
-    "subnet1" : ["Microsoft.Sql"], 
+    "subnet1" : ["Microsoft.Sql"],
     "subnet2" : ["Microsoft.Sql"],
     "subnet3" : ["Microsoft.Sql"]
   }
@@ -25,6 +25,8 @@ module "vnet" {
     environment = "test"
     engineer    = "ci/cd"
   }
+
+  enable_ddos_protection = true
 
   depends_on = [azurerm_resource_group.rg-vnet-test-advanced]
 }

@@ -10,6 +10,7 @@ describe azure_virtual_network(resource_group: resource_group1, name: vnet1) do
   it { should exist }
   its('location')  { should eq 'uksouth' }
   its('address_space') { should eq ["10.2.0.0/16"] }
+  its('enable_ddos_protection') { should eq true }
 end
 
 describe azure_subnet(resource_group: resource_group1, vnet: vnet1, name: 'subnet1') do

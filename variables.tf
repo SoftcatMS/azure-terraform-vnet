@@ -80,3 +80,9 @@ variable "vnet_location" {
   type        = string
   default     = null
 }
+
+variable "enable_ddos_protection" {
+  description = "Specifies in DDOS protection should be enabled"
+  type        = bool
+  default     = false
+}
