@@ -1,12 +1,12 @@
 terraform {
   required_version = ">=1.0.0"
 
-  backend "azurerm" {
-    resource_group_name  = "tfstate"
-    storage_account_name = "tfstate25210"
-    container_name       = "tf-modules-azure-vnet-basic"
-    key                  = "terraform.tfstate"
-  }
+  # backend "azurerm" {
+  #   resource_group_name  = "tfstate"
+  #   storage_account_name = "tfstate25210"
+  #   container_name       = "tf-modules-azure-vnet-basic"
+  #   key                  = "terraform.tfstate"
+  # }
 
   # #AWS Backend https://www.terraform.io/docs/language/settings/backends/s3.html
   # backend "s3" {
