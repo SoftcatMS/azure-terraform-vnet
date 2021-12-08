@@ -3,8 +3,8 @@ terraform {
 
   # Azurerm Backend https://www.terraform.io/docs/language/settings/backends/azurerm.html#
   backend "azurerm" {
-    resource_group_name  = "tfstate"
-    storage_account_name = "tfstate25210"
+    resource_group_name  = "Terraform-Storage-accountRG"
+    storage_account_name = "softcattfmodulestate"
     container_name       = "tf-modules-azure-vnet-advanced"
     key                  = "terraform.tfstate"
   }
