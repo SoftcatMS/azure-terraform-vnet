@@ -3,6 +3,14 @@ data "azurerm_resource_group" "vnet" {
   name = var.resource_group_name
 }
 
+
+resource "azurerm_network_ddos_protection_plan" "ddos_plan" {
+  count               = var.enable_ddos_protection ? 1 : 0
+  name                = lower(join("-", [var.vnet_name, ("ddosplan")]))
+  location            = data.azurerm_resource_group.vnet.location
+  resource_group_name = data.azurerm_resource_group.vnet.name
+}
+
 resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
   resource_group_name = data.azurerm_resource_group.vnet.name
@@ -10,6 +18,15 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = var.address_space
   dns_servers         = var.dns_servers
   tags                = var.tags
+
+  dynamic "ddos_protection_plan" {
+    for_each = var.enable_ddos_protection ? [1] : []
+    content {
+      id     = azurerm_network_ddos_protection_plan.ddos_plan[0].id
+      enable = true
+    }
+  }
+
 }
 
 resource "azurerm_subnet" "subnet" {
@@ -41,3 +58,5 @@ resource "azurerm_subnet_route_table_association" "vnet" {
   route_table_id = each.value
   subnet_id      = local.azurerm_subnets[each.key]
 }
+
+
