@@ -9,6 +9,7 @@ resource "azurerm_network_ddos_protection_plan" "ddos_plan" {
   name                = lower(join("-", [var.vnet_name, ("ddosplan")]))
   location            = data.azurerm_resource_group.vnet.location
   resource_group_name = data.azurerm_resource_group.vnet.name
+  tags                = var.tags
 }
 
 resource "azurerm_virtual_network" "vnet" {

@@ -61,7 +61,7 @@ jobs:
         id: inspec_basic
         run: | 
           inspec exec tests/basic/azure-inspec-tests --chef-license accept -t azure://
-        continue-on-error: false
+        continue-on-error: true
 
       - name: Terraform Destroy Basic
         id: destroy_basic
@@ -93,7 +93,7 @@ jobs:
         id: inspec_advanced
         run: | 
           inspec exec tests/advanced/azure-inspec-tests --chef-license accept -t azure://
-        continue-on-error: false
+        continue-on-error: true
 
       - name: Terraform Destroy Advanced
         id: destroy_advanced
