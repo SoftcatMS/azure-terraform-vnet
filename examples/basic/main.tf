@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "rg-vnet-example" {
 }
 
 module "vnet" {
-  source              = "github.com/SoftcatMS/azure-terraform-vnet/?ref=master"
+  source              = "git@github.com:SoftcatMS/azure-terraform-vnet"
   vnet_name           = "vnet-example"
   resource_group_name = azurerm_resource_group.rg-vnet-example.name
   address_space       = ["10.1.0.0/16"]
