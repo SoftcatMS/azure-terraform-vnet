@@ -1,4 +1,4 @@
-# azure-terraform-vnet
+# terraform-azure-vnet
 
 Deploys a Virtual Network in Azure with a subnet or a set of subnets passed in as input parameters
 
