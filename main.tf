@@ -13,6 +13,7 @@ resource "azurerm_network_ddos_protection_plan" "ddos_plan" {
 }
 
 resource "azurerm_virtual_network" "vnet" {
+  #checkov:skip=CKV_AZURE_183:nsure that VNET uses local DNS addresses
   name                = var.vnet_name
   resource_group_name = data.azurerm_resource_group.vnet.name
   location            = var.vnet_location != null ? var.vnet_location : data.azurerm_resource_group.vnet.location
@@ -31,14 +32,14 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "subnet" {
-  count                                          = length(var.subnet_names)
-  name                                           = var.subnet_names[count.index]
-  resource_group_name                            = data.azurerm_resource_group.vnet.name
-  virtual_network_name                           = azurerm_virtual_network.vnet.name
-  address_prefixes                               = [var.subnet_prefixes[count.index]]
-  service_endpoints                              = lookup(var.subnet_service_endpoints, var.subnet_names[count.index], null)
-  private_endpoint_network_policies_enabled      = lookup(var.subnet_enforce_private_link_endpoint_network_policies, var.subnet_names[count.index], false)
-  private_link_service_network_policies_enabled  = lookup(var.subnet_enforce_private_link_service_network_policies, var.subnet_names[count.index], false)
+  count                                         = length(var.subnet_names)
+  name                                          = var.subnet_names[count.index]
+  resource_group_name                           = data.azurerm_resource_group.vnet.name
+  virtual_network_name                          = azurerm_virtual_network.vnet.name
+  address_prefixes                              = [var.subnet_prefixes[count.index]]
+  service_endpoints                             = lookup(var.subnet_service_endpoints, var.subnet_names[count.index], null)
+  private_endpoint_network_policies_enabled     = lookup(var.subnet_enforce_private_link_endpoint_network_policies, var.subnet_names[count.index], false)
+  private_link_service_network_policies_enabled = lookup(var.subnet_enforce_private_link_service_network_policies, var.subnet_names[count.index], false)
 }
 
 locals {
