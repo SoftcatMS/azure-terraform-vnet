@@ -12,7 +12,7 @@ terraform {
   required_providers {
     # Uncomment required providers and delete unneeded
     azurerm = {
-      source  = "hashicorp/azurerm"
+      source = "hashicorp/azurerm"
     }
   }
 }
